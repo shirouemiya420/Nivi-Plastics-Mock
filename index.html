@@ -98,8 +98,11 @@ input,textarea{border:1px solid var(--ln);border-radius:12px;padding:10px 12px;w
 @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)!important}.bar{gap:12px}.search{max-width:none}.hero{gap:24px;grid-template-columns:1fr 1fr}.hero h1{font-size:clamp(34px,6vw,56px)}.hero p{font-size:16px}.tiles{grid-template-columns:repeat(2,1fr)}.ab{gap:28px}}
 @media(max-width:820px){.hero{grid-template-columns:1fr}.stage{max-width:420px}.grid{grid-template-columns:repeat(2,1fr)!important;gap:12px!important}.mdl{padding:16px;gap:16px}.ab{padding:28px 0}.story{margin:36px 0}.sec{padding:24px 0}.bar{padding:8px 14px;row-gap:8px}.cart{padding:9px 16px}.lk.h{padding:8px 6px}.menu{padding:8px 13px}.dr.rt{width:100%}.two{grid-template-columns:1fr}.fact{padding:4px 18px}.fact div{flex-wrap:wrap;gap:4px}.mq div{font-size:20px}}
 @media(max-width:460px){.grid{grid-template-columns:1fr 1fr!important;gap:10px!important}.card{padding:8px 8px 12px!important;border-radius:20px}.card .im{padding:6px}.card h3{font-size:14px}.pr{font-size:16px}.pr s{display:block;margin:0}.card .btn{font-size:13px;padding:8px 10px}.hero h1{font-size:36px}.tile{padding:16px}.tile img{height:120px}.wrap{padding:0 14px}.logo{height:38px}.ann{font-size:12px}.stats b{font-size:34px}}
-html{overflow-x:clip}@media(max-width:460px){.stage{max-width:330px}}
+
 .fm{background:var(--gl);border:1px solid var(--ln);border-radius:26px;padding:22px 26px}.fm .f{max-width:none}.fm select{padding:10px 12px;background:#fff}
+
+@media(max-width:820px){.hero{gap:30px;padding:26px 0 10px}.hero p{font-size:16px;margin:16px 0 22px}.hero .btn{margin:0 6px 10px 0}.stage{max-width:360px;margin-top:6px}.it{width:21cqw;margin:-10.5cqw 0 0 -10.5cqw;transform:rotate(var(--a)) translateX(36cqw) rotate(calc(var(--a)*-1))}.core{width:34cqw}.mq{margin:20px 0}.sec h2{font-size:28px}.tiles{gap:12px}.tile b{font-size:16px}.tile span{font-size:13px}.tile{padding:16px}.tile img{height:120px}.wrap{padding:0 16px}}
+@media(max-width:460px){.hero h1{font-size:38px}.bar{gap:8px}.lk.h{font-size:14px}.cart{font-size:14px;padding:9px 14px}}
 /* Nivi theme v2: chalk, amaranth, thulian pink, brook green, olive */
 .bgfx .b1{background:radial-gradient(closest-side,#b5728a55,#0000)!important}
 .bgfx .b2{background:radial-gradient(closest-side,#aabaae88,#0000)!important}
@@ -179,9 +182,9 @@ $("app").innerHTML=(h?`<section class="hero"><div><h1><span class="gt">${split("
 /* motion */
 const S={tx:innerWidth/2,ty:innerHeight/2,cx:innerWidth/2,cy:innerHeight/2,n:-1};let IO,PL=[],SP=[],R=matchMedia("(prefers-reduced-motion:reduce)").matches;
 function fx(){IO&&IO.disconnect();IO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");const n=e.target.querySelector("[data-n]");n&&cnt(n);IO.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -6% 0px"});
-document.querySelectorAll(".rv").forEach(e=>IO.observe(e));PL=[...document.querySelectorAll("[data-d]")];SP=[...document.querySelectorAll("#sw span")];S.n=-1}
+document.querySelectorAll(".rv").forEach(e=>IO.observe(e));PL=R?[]:[...document.querySelectorAll("[data-d]")];SP=[...document.querySelectorAll("#sw span")];S.n=-1}
 function cnt(e){if(e.dataset.d)return;e.dataset.d=1;const T=+e.dataset.n,t0=performance.now();(function s(t){const k=Math.min(1,(t-t0)/1400),v=Math.round(T*(1-Math.pow(1-k,4)));e.textContent=v;k<1&&requestAnimationFrame(s)})(t0)}
-function loop(){const gl=$("glow"),pg=$("pg");S.cx+=(S.tx-S.cx)*.14;S.cy+=(S.ty-S.cy)*.14;gl.style.transform=`translate3d(${S.cx-250}px,${S.cy-250}px,0)`;
+function loop(){const gl=$("glow"),pg=$("pg");if(!R){S.cx+=(S.tx-S.cx)*.14;S.cy+=(S.ty-S.cy)*.14;gl.style.transform=`translate3d(${S.cx-250}px,${S.cy-250}px,0)`;}
 const nx=(S.cx/innerWidth-.5)*2,ny=(S.cy/innerHeight-.5)*2,y=scrollY;pg.style.transform=`scaleX(${y/Math.max(1,document.body.scrollHeight-innerHeight)})`;
 if(y<1600)PL.forEach(e=>{const d=+e.dataset.d;e.style.transform=`translate3d(${-nx*d*26}px,${-ny*d*26-y*d*.14}px,0)`});
 if(SP.length){const r=$("sw").getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.8-r.top)/(r.height+innerHeight*.35))),n=Math.floor(p*SP.length*1.05);if(n!==S.n){SP.forEach((s,i)=>s.classList.toggle("on",i<n));S.n=n}}
@@ -197,5 +200,5 @@ function openCart(){const L=lines(),T=tot();$("cDr").innerHTML=`<div style="disp
 function checkout(){const T=tot();$("cDr").innerHTML=`<h2 style="font-size:24px">Delivery details</h2><div class="f"><label>Full name<input id="cn" autocomplete="name"></label><label>Phone<input id="cp" inputmode="tel" autocomplete="tel"></label><label>Address<textarea id="ca" rows="3" autocomplete="street-address"></textarea></label><div class="two"><label>City<input id="cy"></label><label>PIN code<input id="cz" inputmode="numeric"></label></div></div><div class="note">Demo checkout: the live Razorpay window is not connected in this preview, so no money is taken.</div><button class="btn" style="width:100%" onclick="pay()">Pay ${fmt(T.t)} with Razorpay</button><button class="btn ln" style="width:100%;margin-top:8px" onclick="openCart()">Back to cart</button>`}
 function pay(){const g=i=>$(i).value.trim();if(!g("cn")||g("cp").replace(/\D/g,"").length<10||!g("ca")||!/^\d{6}$/.test(g("cz"))){toast("Enter name, 10-digit phone, address and 6-digit PIN");return}
 const id="NP"+Date.now().toString(36).toUpperCase(),n=g("cn");try{const L=lines(),T0=tot(),O=JSON.parse(localStorage.getItem("nivi_orders")||"{}");O[id]={id,name:n,phone:g("cp"),address:g("ca")+", "+g("cy")+" "+g("cz"),items:L.map(l=>({name:l.p.name,q:l.q})),total:T0.t,status:"New",at:new Date().toISOString()};localStorage.setItem("nivi_orders",JSON.stringify(O))}catch(e){}CART={};try{localStorage.removeItem("nivi")}catch(e){}cc();$("cDr").innerHTML=`<h2 style="font-size:24px">Order placed</h2><p>Thank you, ${esc(n)}. Your demo order <b>${id}</b> is confirmed.</p><button class="btn dk" onclick="shut()">Continue shopping</button>`}
-draw();if(!R)requestAnimationFrame(loop);
+draw();requestAnimationFrame(loop);
 </script></body></html>
